@@ -8,10 +8,10 @@ router.get('/:food', function(req, res, next) {
     const recipe = {
         name: food,
         instructions: ['Step 1: ', 'Step 2:'],
-        ingrediantes: ['Ingredient 1', 'Ingredient 2']
+        ingredients: ['Ingredient 1', 'Ingredient 2']
     };
 
-    res.json(recipe);
+    res.render('index', { recipe });
 });
 
 module.exports = router;
