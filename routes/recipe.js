@@ -7,7 +7,7 @@ router.get('/:food', function(req, res, next) {
 
     const recipe = {
         name: food,
-        instructions: ['Step 1: ', 'Step 2:'],
+        instructions: ['Step 1: ', 'Meanwhile, make the sauce'],
         ingredients: ['Ingredient 1', 'Ingredient 2']
     };
 
