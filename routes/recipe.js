@@ -11,7 +11,7 @@ router.get('/:food', function(req, res, next) {
         ingredients: ['Ingredient 1', 'Ingredient 2']
     };
 
-    res.json(recipe);
+    res.render('recipe', {recipe});
 });
 
 module.exports = router;
