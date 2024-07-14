@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   try {
-    const apiUrl = 'http://localhost:3000/recipe/pizza'
+    const apiUrl = 'http://localhost:3000/recipe/pasta'
     const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error('error');
