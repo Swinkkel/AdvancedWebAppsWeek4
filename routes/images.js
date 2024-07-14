@@ -1,10 +1,7 @@
 const express = require('express');
-const multer = require('multer');
 const router = express.Router();
 
-const upload = multer({ dest: 'uploads/' });
-
-router.post('/', upload.array('images'), (req, res) => {
+router.post('/', function(req, res) {
     res.send('Hi');
 });
 
