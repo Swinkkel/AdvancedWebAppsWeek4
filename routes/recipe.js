@@ -17,7 +17,7 @@ router.get('/:food', function(req, res) {
     res.json(recipe);
 });
 
-router.post('recipe', function(req, res, next) {
+router.post('/', function(req, res, next) {
     const {name, instructions, ingredients} = req.body;
     const newRecipe = {name, instructions, ingredients};
     recipes.push(newRecipe);
