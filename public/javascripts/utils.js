@@ -66,20 +66,18 @@ function initializeCode() {
         });
     });
 
-    document.getElementById('view-recipe').addEventListener('click', function() {
-        fetch('/recipe/pizza')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('recipe').innerHTML = `
-                <h4>${data.name}</h4>
-                <h5>Ingredients</h5>
-                <ul>${data.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
-                <h5>Instructions</h5>
-                <ol>${data.instructions.map(i => `<li>${i}</li>`).join('')}</ol>
-            `;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    fetch('/recipe/pizza')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('recipe').innerHTML = `
+            <h4>${data.name}</h4>
+            <h5>Ingredients</h5>
+            <ul>${data.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
+            <h5>Instructions</h5>
+            <ol>${data.instructions.map(i => `<li>${i}</li>`).join('')}</ol>
+        `;
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
 }

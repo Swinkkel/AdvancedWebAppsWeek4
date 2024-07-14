@@ -6,29 +6,20 @@ block content
         a.brand-logo(href="#") Recipe App
 
     div.container
-      div.row
-        div.col.s6
-          h2 View Recipe
-          button.btn#view-recipe View Recipe
-          div#recipe
+      div.col
+        h2 View Recipe
+        div#recipe
 
-        div.col.s6
-          h2 Add Recipe
-          div.input-field
-            input#name-text(type="text", placeholder="Recipe Name")
-          h4 Ingredients
-          div.input-field
-            textarea#ingredients-text.materialize-textarea
-          button.btn#add-ingredient Add Ingredient
-          h4 Instructions
-          div.input-field
-            textarea#instructions-text.materialize-textarea
-          button.btn#add-instruction Add Instruction
-          h4 Upload Image
-          div.file-field.input-field
-            div.btn
-              span Upload
-              input#image-input(type="file" multiple)
-            div.file-path-wrapper
-              input.file-path.validate(type="text")
-          button.btn#submit Submit
+      div.col
+        h2 Add Recipe
+        input#name-text(type="text", placeholder="Recipe Name")
+        h4 Ingredients
+        textarea#ingredients-text.materialize-textarea
+        button.btn#add-ingredient Add Ingredient
+        h4 Instructions
+        textarea#instructions-text.materialize-textarea
+        button.btn#add-instruction Add Instruction
+        h4 Upload Image
+        input#image-input(type="file" multiple accept="image/*")
+        input.file-path.validate(type="text")
+        button.btn#submit Submit
