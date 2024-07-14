@@ -1,14 +1,81 @@
 extends layout
 
 block content
-    h1= recipe.name
-    h2 Ingredients: 
-    ul 
-        each item in recipe.ingredients
-            li= item
+    nav
+        div.nav-wrapper
+        a.brand-logo(href="#") Recipe App
 
-    h2 Instructions:
-    ol
-        each item in recipe.instructions
-            li= item
-    
+    div.container
+        div.row
+            div.col.s6
+                h2 View Recipe
+                button.btn#view-recipe View Recipe
+                div#recipe
+
+        div.col.s6
+            h2 Add Recipe
+
+    script.
+        $(document).ready(function() {
+            let ingredients = [];
+            let instructions = [];
+
+            $('#add-ingredient').click(function() {
+                let ingredient = $('#ingredients-text').val();
+                ingredients.push(ingredient);
+                $('#ingredients-text').val('');
+            });
+
+            $('#add-instruction').click(function() {
+                let instruction = $('#instructions-text').val();
+                instructions.push(instruction);
+                $('#instructions-text').val('');
+            });
+
+            $('#submit').click(function() {
+                let name = $('#name-text').val();
+                let data = {
+                    name: name,
+                    ingredients: ingredients,
+                    instructions: instructions
+                };
+
+                $.ajax({
+                    url: '/recipe/',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function(response) {
+                        console.log('Recipe added:', response);
+                    }
+                });
+
+                let formData = new FormData();
+                $.each($('#image-input')[0].files, function(i, file) {
+                    formData.append('images', file);
+                });
+
+                $.ajax({
+                    url: '/images',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log('Images uploaded:', response);
+                    }
+                });
+            });
+
+            $('#view-recipe').click(function() {
+                $.get('/recipe/pizza', function(data) {
+                    $('#recipe').html(`
+                        <h4>${data.name}</h4>
+                        <h5>Ingredients</h5>
+                        <ul>${data.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
+                        <h5>Instructions</h5>
+                        <ol>${data.instructions.map(i => `<li>${i}</li>`).join('')}</ol>
+                    `);
+                });
+            });
+        });    
